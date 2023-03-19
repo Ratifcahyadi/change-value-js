@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change value on click</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,100;1,800&family=Roboto:wght@100&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        :root {
+            --main-font: 'Poppins';
+            --main-color: #01eeb7;
+            --secondary-color: #042606;
+        }
+
+        body {
+            background: rgba(0, 0, 0, 0.9);
+            font-family: var(--main-font);
+            color: var(--main-color);
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            background: var(--secondary-color);
+            padding: 20px;
+            min-width: 80%;
+            border-radius: 15px;
+        }
+
+        .heading {
+            padding: 10px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .heading-wrapper {
+            max-width: 80%;
+            margin-bottom: 20px;
+        }
+
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: aliceblue;
+        }
+
+        input {
+            caret-color: var(--main-color);
+            padding: 12px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--main-color);
+            box-shadow:
+            16.3px 17.2px 10px rgba(0, 0, 0, 0.025),
+            53px 56px 80px rgba(0, 0, 0, 0.05);
+            background: rgba( 255, 255, 255, 0.25 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+
+        input[type=text] {
+            outline: none;
+        }
+
+        input:focus {
+            outline: solid 1px #fff;
+        }
+
+        input::placeholder {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--main-color);
+        }
+
+        #btn-submit {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            color: #fff;
+            border-radius: 10px;
+            border: none;
+            background-color: var(--main-color);
+            font-weight: 700;
+            font-size: 18px;
+            opacity: 0.7;
+        }
+
+        button[type=submit] {
+            outline: none;
+        }
+
+        button[type=submit]:hover {
+            background: #17ffc9;
+        }
+
+        .title-wrapper p {
+            color: #a0a0a0;
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-content">
+        <!-- output -->
+        <div class="heading-wrapper">
+            <h1 id="heading">First Title Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </h1>
+            <hr>
+        </div>
+        <!-- input -->
+        <div class="hero-section">
+            <div class="title-wrapper">
+                <label for="title">Input New Title</label>
+                <input type="text" name="title" id="title" placeholder="type here...">
+                <p id="result">0/60</p>
+            </div>
+            <div id="btn-submit">
+                <button type="submit">
+                    Save
+                </button>
+            </div>
+        </div>            
+    </div>
+
+    <script type="text/javascript">
+        const btn = document.getElementById('btn-submit');
+        const heading = document.getElementById('heading');
+        const mytext = document.getElementById('title');
+        const result = document.getElementById('result');
+
+        function fun1() {
+            heading.innerHTML = mytext.value;
+        }
+
+        btn.addEventListener('click', fun1);
+
+        const limit = 60;
+        result.textContent = 0 + "/" + limit;
+
+        mytext.addEventListener("input", function()  {
+            const textLenght  = mytext.value.length;
+            // console.log(textLenght);
+            result.textContent = textLenght + "/" + limit;
+
+            if(textLenght > limit) {
+                result.style.color = "#ff0000";
+                // result.style.borderColor = "#5d54b3";
+            } else {
+                result.style.color = "#5d54b3";
+            }
+        });
+    </script>
+</body>
+
+</html>
